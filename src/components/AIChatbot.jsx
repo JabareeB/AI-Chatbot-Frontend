@@ -8,6 +8,32 @@ const AIChatbot = () => {
     const [response, setResponse] = useState('');
     const [loading, setLoading] = useState(false);
 
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const recognition = SpeechRecognition ? new SpeechRecognition() : null;
+
+    const handleVoiceInput = () => {
+    if (!recognition) {
+        alert("Speech Recognition is not supported in this browser.");
+        return;
+     }
+
+     recognition.continuous = false;
+     recognition.interimResults = false;
+     recognition.lang = 'en-US';
+ 
+     recognition.start();
+
+     recognition.onresult = (event) => {
+        const spokenText = event.results[0][0].transcript;
+        setUserInput(spokenText);
+     };
+
+     recognition.onerror = (event) => {
+        console.error("Speech recognition error:", event.error);
+     };
+    };
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -39,7 +65,6 @@ const AIChatbot = () => {
                 justifyContent: 'center',
                 alignItems: 'center',
                 height: '100vh',
-                backgroundColor: '#1e1e1e',
                 padding: '20px'
             }}
         >
@@ -51,15 +76,15 @@ const AIChatbot = () => {
                     display: 'flex',
                     width: '90%',
                     maxWidth: '1200px',
-                    backgroundColor: '#f0f0f0',
+                    backgroundColor: '#07086a',
                     borderRadius: '15px',
-                    boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
+                    boxShadow: '0 0 10px rgba(226, 23, 23, 0.1)',
                     overflow: 'hidden'
                 }}
             >
                 {/* MSU Logo Section */}
                 <div style={{
-                    backgroundColor: '#0056a1',
+                    backgroundColor: 'transparent',
                     padding: '30px',
                     display: 'flex',
                     alignItems: 'center',
@@ -70,64 +95,74 @@ const AIChatbot = () => {
                 </div>
 
                 {/* Chatbot Section */}
-                <div style={{ padding: '40px', flex: '2' }}>
-                    <h1 style={{ textAlign: 'center', color: '#333', marginBottom: '20px' }}>AI Chatbot</h1>
-                    <form onSubmit={handleSubmit} style={{ marginBottom: '20px' }}>
-                        <input
-                            type="text"
-                            value={userInput}
-                            onChange={(e) => setUserInput(e.target.value)}
-                            placeholder="Ask me anything..."
-                            style={{
-                                width: '100%',
-                                padding: '15px',
-                                borderRadius: '8px',
-                                border: '1px solid #333',
-                                backgroundColor: '#333',
-                                color: 'white',
-                                marginBottom: '15px',
-                                fontSize: '1rem'
-                            }}
-                        />
-                        <button type="submit" style={{
-                            padding: '12px 25px',
-                            borderRadius: '8px',
-                            backgroundColor: '#007bff',
-                            color: 'white',
-                            border: 'none',
-                            cursor: 'pointer',
-                            width: '100%',
-                            fontSize: '1rem',
-                            transition: 'background-color 0.3s'
-                        }}>
-                            {loading ? 'Loading...' : 'Send'}
-                        </button>
-                    </form>
-                    {loading && (
-                        <div style={{
-                            backgroundColor: '#007bff',
-                            height: '5px',
-                            borderRadius: '5px',
-                            marginBottom: '10px',
-                            animation: 'load 1s infinite'
-                        }}></div>
-                    )}
-                    {response && (
+                <div style={{ padding: '40px', flex: '2', display:'flex', flexDirection:'column', justifyContent: 'space-between', height: '100%' }}>
+                    <div>
+                        <h1 className= "bungee-spice-regular" style={{ textAlign: 'center', marginBottom: '20px' }}>Code Orange Code Blue</h1>
+                        {response && (
                         <motion.div 
                             initial={{ opacity: 0 }} 
                             animate={{ opacity: 1 }} 
                             transition={{ duration: 0.5 }}
                             style={{
-                                backgroundColor: 'white',
+                                backgroundColor: 'Navy-Blue',
                                 padding: '15px',
                                 borderRadius: '8px',
                                 border: '1px solid #ddd',
-                                fontSize: '1rem'
+                                fontSize: '1rem',
+                                marginBottom: '20px'
                             }}
                         >
                             <strong>Response:</strong> {response}
                         </motion.div>
                     )}
+                    </div>
+                    <form onSubmit={handleSubmit}>
+                        <div style={{postion: 'relative', display:'flex', alignItems: 'center'}}>
+                        <input
+                        type ="text"
+                        value={userInput}
+                        onChange={(e)=> setUserInput(e.target.value)}
+                        placeholder='Ask me anything...'
+                        style={{
+                            width: '100%',
+                            padding: '15px 50px 15px 15px',
+                            borderRadius: '8px',
+                            border: '1px solid #333',
+                            backgroundColor: '#333',
+                            color: 'white',
+                            marginBottom: '15px',
+                            fontSize: '1rem'
+                        }}
+                    /> 
+                    <button type='button' onClick={handleVoiceInput} style={{
+                        position: 'bottom-right',
+                        right: '10px',
+                        top: '10px',
+                        backgroundColor: 'transparent',
+                        border: 'none',
+                        cursor: 'pointer',
+                        color: 'white',
+                        fontSize: '1.3rem'
+                    }}
+                    title="click  to speak"
+                    >
+                    🎤
+                    </button> 
+                    </div>  
+                    <button type='submit' style={{
+                        padding: '12px 25px',
+                        borderRadius: '8px',
+                        backgroundColor: '#ff3300',
+                        color: 'white',
+                        border: 'none',
+                        cursor: 'pointer',
+                        width: '100%',
+                        fontSize: '1rem',
+                        transition: 'background-color 0.3s'
+                    }}>
+                        {loading ? 'Loading...' : 'Send'}
+                    </button>
+                </form>
                 </div>
             </motion.div>
         </motion.div>
