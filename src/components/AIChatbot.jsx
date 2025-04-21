@@ -32,7 +32,16 @@ const AIChatbot = () => {
         console.error("Speech recognition error:", event.error);
      };
     };
+     
 
+    const handleDocUpload = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            console.log("Uploaded file:", file);
+            // Handle upload logic here
+        }
+    };
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -117,7 +126,7 @@ const AIChatbot = () => {
                     )}
                     </div>
                     <form onSubmit={handleSubmit}>
-                        <div style={{postion: 'relative', display:'flex', alignItems: 'center'}}>
+                        <div style={{position: 'relative', display: 'flex', alignItems: 'center'}}>
                         <input
                         type ="text"
                         value={userInput}
@@ -133,9 +142,11 @@ const AIChatbot = () => {
                             marginBottom: '15px',
                             fontSize: '1rem'
                         }}
+                        
                     /> 
+                    
                     <button type='button' onClick={handleVoiceInput} style={{
-                        position: 'bottom-right',
+                        position: 'bottom',
                         right: '10px',
                         top: '10px',
                         backgroundColor: 'transparent',
@@ -148,7 +159,31 @@ const AIChatbot = () => {
                     >
                     🎤
                     </button> 
-                    </div>  
+                    </div> 
+                    <label
+                     htmlFor="doc-upload"
+                     style={{
+                     position: 'bottom',
+                     right: '10px',
+                     top: '10px',
+                     backgroundColor: 'transparent',
+                     border: 'none',
+                     cursor: 'pointer',
+                     color: 'white',
+                     fontSize: '1.3rem'
+                    }}
+                    title="Upload a document"
+                    >
+                   📄 
+                   <input
+                   id="doc-upload"
+                   type="file"
+                   accept=".pdf,.doc,.docx,.txt"
+                   onChange={handleDocUpload}
+                   style={{ display: 'none' }}
+                   />
+               </label>
+               
                     <button type='submit' style={{
                         padding: '12px 25px',
                         borderRadius: '8px',
