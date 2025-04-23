@@ -1,4 +1,3 @@
-// src/components/AIChatbot.jsx
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { motion } from 'framer-motion';
@@ -142,24 +141,25 @@ const AIChatbot = () => {
                         </button>
                     </div>
 
-                    <form onSubmit={handleSubmit} style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-                        <div style={{ position: 'relative', width: '100%', maxWidth: '350px', display: 'flex', alignItems: 'center' }}>
+                    <form onSubmit={handleSubmit} style={{ width: '100%', display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center' }}>
+                        <div style={{ width: '100%', maxWidth: '350px', display: 'flex', alignItems: 'center', marginBottom: '10px', backgroundColor: '#333', borderRadius: '8px', padding: '0 10px' }}>
                             <input
                                 value={userInput}
                                 onChange={(e) => setUserInput(e.target.value)}
                                 placeholder="Ask me anything..."
-                                style={{ flex: 1, padding: '10px 40px 10px 10px', borderRadius: '8px', backgroundColor: '#333', color: 'white', border: 'none' }}
+                                style={{ flex: 1, padding: '10px', backgroundColor: 'transparent', color: 'white', border: 'none' }}
                             />
-
-                            <button onClick={handleVoiceInput} type="button" title="Speak" style={{ position: 'absolute', right: 45, color: listening ? 'red' : '#FFA500', background: 'none', border: 'none', fontSize: '1.4rem' }}>
+                            <button onClick={handleVoiceInput} type="button" title="Speak" style={{ background: 'none', border: 'none', color: listening ? 'red' : '#FFA500', fontSize: '1.4rem', cursor: 'pointer', outline: 'none' }}>
                                 <FaMicrophone />
                             </button>
-
-                            <label htmlFor="doc-upload" style={{ position: 'absolute', right: 10, color: '#FFA500', fontSize: '1.4rem', cursor: 'pointer' }}>
+                            <label htmlFor="doc-upload" style={{ color: '#FFA500', fontSize: '1.4rem', cursor: 'pointer', marginLeft: '10px' }}>
                                 <FaRegFileAlt />
                                 <input id="doc-upload" type="file" accept=".pdf,.txt" onChange={handleDocUpload} style={{ display: 'none' }} />
                             </label>
                         </div>
+                        <button type="submit" style={{ width: '100%', maxWidth: '350px', padding: 12, backgroundColor: '#FFA500', color: 'black', border: 'none', borderRadius: '8px', marginBottom: '10px' }}>
+                            Send
+                        </button>
                     </form>
 
                     <button
@@ -168,7 +168,7 @@ const AIChatbot = () => {
                             setHistory([]);
                             localStorage.removeItem('chatHistory');
                         }}
-                        style={{ marginTop: '10px', width: '100%', maxWidth: '350px', padding: 12, backgroundColor: '#555', color: 'white', border: 'none', borderRadius: '8px' }}
+                        style={{ width: '100%', maxWidth: '350px', padding: 12, backgroundColor: '#555', color: 'white', border: 'none', borderRadius: '8px' }}
                     >
                         Reset Conversation
                     </button>
