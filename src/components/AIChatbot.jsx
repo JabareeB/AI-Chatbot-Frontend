@@ -69,8 +69,8 @@ const AIChatbot = () => {
 
         setLoading(true);
         try {
-            const result = await axios.post('http://localhost:8080/api/ask', { question: userInput });
-            const botReply = result.data;
+            const result = await axios.post('http://localhost:8080/chat', { query: userInput });
+            const botReply = result.data.response;
             const newEntry = { user: userInput, bot: botReply };
             const updated = [...history, newEntry];
             setHistory(updated);
@@ -191,3 +191,4 @@ const AIChatbot = () => {
 };
 
 export default AIChatbot;
+
