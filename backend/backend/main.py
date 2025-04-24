@@ -12,29 +12,23 @@ from langchain_community.chat_models import ChatOpenAI
 from langchain.chains import ConversationalRetrievalChain
 from pinecone import Pinecone
 
-# Load environment variables
 load_dotenv()
 
-# FastAPI application
 app = FastAPI()
 
-# Add CORS middleware to allow requests from the frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # Allow requests from your frontend
+    allow_origins=["http://localhost:5173"],  
     allow_credentials=True,
-    allow_methods=["*"],  # Allow all HTTP methods
-    allow_headers=["*"],  # Allow all headers
+    allow_methods=["*"], 
+    allow_headers=["*"],  
 )
 
-# Pydantic model for request validation
 class QueryRequest(BaseModel):
-    query: str  # Ensures the query is a string
+    query: str  
 
-# Global variable to hold chat history
 chat_history = []
 
-# Helper functions
 def load_json_documents(file_paths):
     documents = []
     for file_path in file_paths:
@@ -61,7 +55,8 @@ async def ingest_data():
             "datasource/Department.json",
             "datasource/advising.json",
             "datasource/academic_resources.json",
-            "datasource/classes.json"
+            "datasource/classes.json",
+            "datasource/career_resources.json"
         ]
 
         raw_documents = load_json_documents(json_files)
@@ -100,8 +95,9 @@ async def clear_index():
         index_name = os.getenv("PINECONE_INDEX_NAME")
 
         pc = Pinecone(api_key=api_key)
-        index = pc.Index(index_name)
-        index.delete(delete_all=True)
+        index = pc.Index(host="https://vectorized-datasource-76i6d2b.svc.aped-4627-b74a.pinecone.io")
+
+        index.delete(delete_all=True, namespace='')
 
         return {"message": f"Index {index_name} cleared successfully."}
 
@@ -119,7 +115,7 @@ async def chat_with_bot(request: QueryRequest):
         embeddings = OpenAIEmbeddings(openai_api_key=os.environ.get("OPENAI_API_KEY"))
         vectorstore = PineconeVectorStore(index_name=os.environ["INDEX_NAME"], embedding=embeddings)
 
-        chat = ChatOpenAI(model_name="gpt-3.5-turbo", verbose=True, temperature=0)
+        chat = ChatOpenAI(model_name="gpt-4-turbo", verbose=True, temperature=0)
         qa = ConversationalRetrievalChain.from_llm(llm=chat, chain_type="stuff", retriever=vectorstore.as_retriever())
 
         global chat_history

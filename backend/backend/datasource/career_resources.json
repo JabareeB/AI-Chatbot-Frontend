@@ -1,0 +1,167 @@
+{
+    "title": "Computer Science Resources",
+    "description": "Resources to support students in their tech journey—from learning to code to finding internships and scholarships.",
+    "categories": [
+      {
+        "name": "Organizations & Communities",
+        "resources": [
+          {
+            "name": "ACM (Association for Computing Machinery)",
+            "url": "https://www.acm.org",
+            "description": "Provides access to research, online courses, webinars, and student chapter events to support computing students."
+          },
+          {
+            "name": "NSBE (National Society of Black Engineers)",
+            "url": "https://www.nsbe.org",
+            "description": "Supports Black engineers with scholarships, conferences, and career development resources."
+          },
+          {
+            "name": "ColorStack",
+            "url": "https://www.colorstack.org",
+            "description": "Offers mentorship, interview prep, internships, and a vibrant peer network for Black and Latinx CS students."
+          },
+          {
+            "name": "Rewriting the Code (RTC)",
+            "url": "https://rewritingthecode.org",
+            "description": "Empowers college women in tech through mentorship, fellowships, private job boards, and leadership development."
+          },
+          {
+            "name": "SHPE (Society of Hispanic Professional Engineers)",
+            "url": "https://www.shpe.org",
+            "description": "Supports Hispanic students in STEM with career fairs, mentorship, and leadership programs."
+          },
+          {
+            "name": "SWE (Society of Women Engineers)",
+            "url": "https://swe.org",
+            "description": "Provides scholarships, professional resources, and a network for women in engineering and tech."
+          }
+        ]
+      },
+      {
+        "name": "Learning Platforms & Practice Tools",
+        "resources": [
+          {
+            "name": "CodePath",
+            "url": "https://www.codepath.org/",
+            "description": "Delivers tech training and career support tailored to first-gen and low-income students with mentorship and project-based learning."
+          },
+          {
+            "name": "freeCodeCamp",
+            "url": "https://www.freecodecamp.org/",
+            "description": "Offers free certifications and hands-on lessons in coding, data analysis, and web development."
+          },
+          {
+            "name": "CS50x by Harvard",
+            "url": "https://cs50.harvard.edu/x",
+            "description": "Popular introductory computer science course covering fundamental concepts through lectures and projects."
+          },
+          {
+            "name": "LeetCode / HackerRank / Codeforces",
+            "url": "https://leetcode.com",
+            "description": "Platforms to practice coding problems and prepare for technical interviews. Great for job prep and competitive programming."
+          },
+          {
+            "name": "Exercism",
+            "url": "https://exercism.io",
+            "description": "Practice programming in over 60 languages with mentor feedback and real-world coding exercises."
+          }
+        ]
+      },
+      {
+        "name": "Internship & Fellowship Programs",
+        "resources": [
+          {
+            "name": "Google STEP Program",
+            "url": "https://buildyourfuture.withgoogle.com/internships",
+            "description": "Summer internships for first- and second-year underrepresented students, with mentoring and training."
+          },
+          {
+            "name": "Microsoft Explore Program",
+            "url": "https://careers.microsoft.com/students/us/en/ur-explore",
+            "description": "Internship program for early-year students to explore software engineering through hands-on projects and guidance."
+          },
+          {
+            "name": "Meta University Internship",
+            "url": "https://www.metacareers.com/careerprograms/pathways/metauniversity",
+            "description": "Provides underrepresented college students the opportunity to build real projects with Meta engineers."
+          },
+          {
+            "name": "Code2040 Fellows Program",
+            "url": "https://programs.code2040.org/pages/fellows",
+            "description": "Internships and leadership development for Black and Latinx CS students, with focus on career empowerment."
+          },
+          {
+            "name": "HackDiversity",
+            "url": "https://www.hackdiversity.com/",
+            "description": "Career accelerator helping underrepresented students secure tech internships with coaching and industry support."
+          }
+        ]
+      },
+      {
+        "name": "Technical Interview Preparation",
+        "resources": [
+          {
+            "name": "Tech Interview Handbook",
+            "url": "https://www.techinterviewhandbook.org/",
+            "description": "Free resource with guides on behavioral and technical interviews, system design, and coding challenges."
+          },
+          {
+            "name": "Interviewing.io",
+            "url": "https://interviewing.io/",
+            "description": "Platform for anonymous mock interviews with engineers, offering real-time feedback and job potential."
+          },
+          {
+            "name": "Pathrise",
+            "url": "https://www.pathrise.com/",
+            "description": "Mentorship-driven job search accelerator covering resume help, interview prep, and offer negotiation."
+          }
+        ]
+      },
+      {
+        "name": "Research and Internship Opportunities for Morgan Students",
+        "resources": [
+          {
+            "name": "SCMNS Opportunities Spreadsheet",
+            "url": "https://docs.google.com/spreadsheets/d/1TczO-DhiHnqeMJ6q875rRxLfhRkV7abe-WfZQiQ7eJY/edit?gid=0#gid=0",
+            "description": "Live spreadsheet listing research, internship, and fellowship opportunities for SCMNS students at Morgan State University."
+          },
+          {
+            "name": "Morgan SCMNS Research Page",
+            "url": "https://www.morgan.edu/school-of-computer-mathematical-and-natural-sciences/students/research-and-internships",
+            "description": "Official site listing research opportunities, internship listings, and academic support for science majors at Morgan."
+          }
+        ]
+      },
+      {
+        "name": "Scholarships & Funding",
+        "resources": [
+          {
+            "name": "Last Mile Education Fund",
+            "url": "https://www.lastmile-ed.org/",
+            "description": "Provides emergency financial aid to low-income CS students nearing graduation to help them cross the finish line."
+          },
+          {
+            "name": "Google Scholarships",
+            "url": "https://buildyourfuture.withgoogle.com/scholarships",
+            "description": "Offers scholarships and professional development opportunities for underrepresented students in tech."
+          },
+          {
+            "name": "The Gates Scholarship",
+            "url": "https://www.thegatesscholarship.org/",
+            "description": "Covers full cost of college for Pell-eligible minority students with strong leadership and academic performance."
+          },
+          {
+            "name": "Dell Scholars Program",
+            "url": "https://www.dellscholars.org/",
+            "description": "Provides scholarships, mentoring, and resources for low-income, first-generation college students."
+          },
+          {
+            "name": "UNCF Scholarships",
+            "url": "https://uncf.org/scholarships",
+            "description": "A wide range of scholarships for Black students pursuing college degrees, including computer science majors."
+          }
+        ]
+      }
+    ]
+  }
+  

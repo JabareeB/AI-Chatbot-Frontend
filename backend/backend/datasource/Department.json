@@ -215,8 +215,7 @@
       {
         "name": "Women In Computer Science (WiCS)",
         "mission": "Supporting and empowering female students in computer science through networking, mentorship, and community building.",
-        "president": "Aramide Ogundiran",
-        "website": "WiCS",
+        "website": "https://www.morganstatewics.com/",
         "instagram": "@morganstatewics",
         "linkedin": "MSU Women In Computer Science"
       },
@@ -227,7 +226,7 @@
       {
         "name": "Society for the Advancement of Computer Science (SACS)",
         "mission": "Promoting the advancement of computer science through discussions, technical events, and industry collaboration.",
-        "president": "Daniel Oluwarotimi",
+        "website": "https://www.morgan.edu/computer-science/current-students/sacs",
         "instagram": "@sacs_msu"
       }
     ]
