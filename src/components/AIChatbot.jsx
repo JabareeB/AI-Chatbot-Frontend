@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { motion } from 'framer-motion';
 import msuLogo from '../assets/msu_logo.png';
-import { FaMicrophone, FaRegFileAlt } from 'react-icons/fa';
+import { FaMicrophone, FaRegFileAlt,} from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
 const AIChatbot = () => {
@@ -12,6 +12,7 @@ const AIChatbot = () => {
     const [loading, setLoading] = useState(false);
     const [listening, setListening] = useState(false);
     const [degreeData, setDegreeData] = useState(null);
+    const [scrollIndex, setScrollIndex] = useState(0);
     const messagesEndRef = useRef(null);
     const messageRefs = useRef([]);
     const navigate = useNavigate();
@@ -55,11 +56,38 @@ const AIChatbot = () => {
         messageRefs.current[index]?.scrollIntoView({ behavior: 'smooth' });
     };
 
+    const scrollUp = () => {
+        const newIndex = Math.max(0, scrollIndex - 1);
+        setScrollIndex(newIndex);
+        scrollToMessage(newIndex);
+    };
+
+    const scrollDown = () => {
+        const newIndex = Math.min(history.length - 1, scrollIndex + 1);
+        setScrollIndex(newIndex);
+        scrollToMessage(newIndex);
+    };
+
     const injectBotMessage = (text) => {
-        const entry = { user: null, bot: text };
-        const updated = [...history, entry];
-        setHistory(updated);
-        localStorage.setItem('chatHistory', JSON.stringify(updated));
+        const entry = { user: null, bot: '' };
+        const updatedHistory = [...history, entry];
+        setHistory(updatedHistory);
+    
+        let i = 0;
+        const typingSpeed = 30;
+    
+        const typer = setInterval(() => {
+            if (i < text.length) {
+                // Update the last bot message letter by letter
+                updatedHistory[updatedHistory.length - 1].bot += text.charAt(i);
+                setHistory([...updatedHistory]);
+                i++;
+            } else {
+                clearInterval(typer);
+                // Save only after the full message is typed
+                localStorage.setItem('chatHistory', JSON.stringify(updatedHistory));
+            }
+        }, typingSpeed);
     };
 
     const handleSubmit = async (e) => {
@@ -101,7 +129,7 @@ const AIChatbot = () => {
         <motion.div style={{ display: 'flex', justifyContent: 'flex-start', paddingLeft: '20px', alignItems: 'center', height: '100vh', padding: '20px' }}>
             <motion.div style={{ display: 'flex', width: '90%', maxWidth: '1200px', backgroundColor: '#07086a', borderRadius: '15px', overflow: 'hidden' }}>
                 <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '30px' }}>
-                    <img src={msuLogo} alt="MSU Logo" style={{ width: '80%', maxWidth: '200px' }} />
+                    <img src={msuLogo} alt="MSU Logo" onClick={() => injectBotMessage("CODE ORANGE, CODE BLUE, M S U")} style={{ width: '80%', maxWidth: '200px' }} />
                 </div>
 
                 <div style={{ flex: 2, padding: '40px', display: 'flex', flexDirection: 'column', alignItems: 'center', maxWidth: '500px' }}>
