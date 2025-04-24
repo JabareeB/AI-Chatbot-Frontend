@@ -195,7 +195,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { motion } from 'framer-motion';
 import msuLogo from '../assets/msu_logo.png';
-import { FaMicrophone, FaRegFileAlt } from 'react-icons/fa';
+import { FaMicrophone, FaRegFileAlt,} from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 
@@ -252,11 +252,38 @@ const AIChatbot = () => {
         messageRefs.current[index]?.scrollIntoView({ behavior: 'smooth' });
     };
 
+    const scrollUp = () => {
+        const newIndex = Math.max(0, scrollIndex - 1);
+        setScrollIndex(newIndex);
+        scrollToMessage(newIndex);
+    };
+
+    const scrollDown = () => {
+        const newIndex = Math.min(history.length - 1, scrollIndex + 1);
+        setScrollIndex(newIndex);
+        scrollToMessage(newIndex);
+    };
+
     const injectBotMessage = (text) => {
-        const entry = { user: null, bot: text };
-        const updated = [...history, entry];
-        setHistory(updated);
-        localStorage.setItem('chatHistory', JSON.stringify(updated));
+        const entry = { user: null, bot: '' };
+        const updatedHistory = [...history, entry];
+        setHistory(updatedHistory);
+    
+        let i = 0;
+        const typingSpeed = 30;
+    
+        const typer = setInterval(() => {
+            if (i < text.length) {
+                // Update the last bot message letter by letter
+                updatedHistory[updatedHistory.length - 1].bot += text.charAt(i);
+                setHistory([...updatedHistory]);
+                i++;
+            } else {
+                clearInterval(typer);
+                // Save only after the full message is typed
+                localStorage.setItem('chatHistory', JSON.stringify(updatedHistory));
+            }
+        }, typingSpeed);
     };
 
     const handleSubmit = async (e) => {

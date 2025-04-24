@@ -74,3 +74,26 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.history-panel {
+  overflow-y: auto;
+  max-height: 100vh;
+  scrollbar-width: none; /* Firefox hides by default */
+}
+
+.history-panel:hover {
+  scrollbar-width: thin;
+  scrollbar-color: #FFA500 transparent;
+}
+
+/* WebKit (Chrome, Edge, Safari) */
+.history-panel::-webkit-scrollbar {
+  width: 0;
+}
+.history-panel:hover::-webkit-scrollbar {
+  width: 8px;
+}
+.history-panel:hover::-webkit-scrollbar-thumb {
+  background-color: #FFA500;
+  border-radius: 10px;
+}
